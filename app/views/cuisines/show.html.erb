@@ -1,0 +1,17 @@
+<h1><%= @cuisine.name %></h1>
+
+<% if @cuisine.recipes.any? %>
+  <%= @cuisine.recipes.each do |cr|  %>
+  
+    <h1><%= cr.title %></h1>
+    <ul>
+      <li><%= cr.recipe_type %></li>
+      <li><%= cr.cuisine.name %></li>
+      <li><%= cr.difficulty %></li>
+      <li><%= cr.cook_time%> minutos</li>
+    </ul>
+
+  <%end%>
+<%else%>
+    Nenhuma receita encontrada para este tipo de cozinha
+<%end%>  
