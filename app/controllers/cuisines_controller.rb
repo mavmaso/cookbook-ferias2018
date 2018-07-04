@@ -11,10 +11,11 @@ class CuisinesController < ApplicationController
 
   def create
     @cuisine = Cuisine.new(cuisine_params)
+    
     if @cuisine.save
       redirect_to @cuisine
     else
-      render :new
+      render 'new'
     end    
   end
 
