@@ -2,7 +2,7 @@ class RecipeTypeController < ApplicationController
 
   def show
     id = params[:id]
-    @recipetypes = RecipeType.find(id)
+    @recipetype = RecipeType.find(id)
   end
   
   def new
