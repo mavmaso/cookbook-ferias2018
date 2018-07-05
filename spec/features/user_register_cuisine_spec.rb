@@ -18,16 +18,4 @@ feature 'User register cuisine' do
 
     expect(page).to have_content('Você deve informar o nome da cozinha')
   end
-
-  scenario 'and can\'t have the same name' do
-    create = Cuisine.create(name: 'Brasileira') 
-    
-    visit new_cuisine_path
-    fill_in 'Nome', with: 'Brasileira'
-    click_on 'Enviar'
-
-    #expect()
-    expect(page).to have_content('Cozinha já cadastrada')
-
-  end
 end
