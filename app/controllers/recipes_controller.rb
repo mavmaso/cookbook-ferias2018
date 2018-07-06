@@ -25,8 +25,13 @@ class RecipesController < ApplicationController
 
   def update
     recipe = Recipe.find(params[:id])
-    recipe.update(recipe_params)
-
+    if recipe.update(recipe_params)
+      flash[:succes] = 'Cadastro atualizado com sucesso.'
+      redirect_to recipe_path(recipe.id)
+    else
+      flash[:fail] = 'Não foi possivel editar' 
+      redirect_to recipe_path(recipe.id) 
+    end
   end
 
   private

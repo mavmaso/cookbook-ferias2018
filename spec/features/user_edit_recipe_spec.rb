@@ -30,29 +30,41 @@ feature 'User edit recipe' do
 
     expect(page).to have_css('h1', text: 'Cadastro atualizado com sucesso.')
     expect(page).to have_css('h1', text: 'Churros')
-    expect(page).to have_css('li', text: 'Janta')
-    expect(page).to have_css('li', text: 'Mexicana')
-    expect(page).to have_css('li', text: 'Facil')
-    expect(page).to have_css('li', text: '90 minutos')
-    expect(page).to have_css('li', text: 'Doce de leite')
-    expect(page).to have_css('li', text: 'Ir na vila do Chaves')
+    expect(page).to have_css('p', text: 'Janta')
+    expect(page).to have_css('p', text: 'Mexicana')
+    expect(page).to have_css('p', text: 'Facil')
+    expect(page).to have_css('p', text: '90 minutos')
+    expect(page).to have_css('p', text: 'Doce de leite')
+    expect(page).to have_css('p', text: 'Ir na vila do Chaves')
 
   end
   
-  #scenario 'Change cook time' do
+  scenario 'Cant leave empty fields' do
     #criar
-    #cuisine = Cuisine.create(name: 'Brasileira')
-    #recipe_type = RecipeType.create(name: 'Sobremesa')
-    #recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          #cuisine: cuisine, difficulty: 'Médio',
-                          #ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          #cook_method: 'Misturar tudo, bater e assar',
-                          #cook_time: 60)
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          cook_method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
     #navegacao
-
+    visit root_path
+    click_on recipe.title
+    click_on 'Editar'
+    
+    fill_in 'Título', with: ' '
+    fill_in 'Dificuldade', with: ' ' 
+    fill_in 'Tempo de Preparo', with: ' '
+    fill_in 'Ingredientes', with: ' '
+    fill_in 'Como Preparar', with: ' '
+    click_on 'Atualizar'
+    
     #expectativa
+    expect(page).to have_css('h1', text: 'Não foi possivel editar')
 
-  #end
+
+  end
 
 
 
