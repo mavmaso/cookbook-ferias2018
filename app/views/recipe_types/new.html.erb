@@ -1,0 +1,18 @@
+<ul>
+<%= @recipetype.errors.full_messages.each do |msg| %>
+ <li><%= msg %></li>
+<%end%>
+</ul>
+
+<%= form_for(@recipetype) do |f| %>
+  <div>
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name %>
+  </div>
+  <%= f.submit "Enviar" %>
+  
+<% end %>
+
+<% if @recipetype.recipes.empty? %>
+    Nenhuma receita encontrada para este tipo de receitas
+<%end%>  
