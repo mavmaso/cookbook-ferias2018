@@ -32,6 +32,20 @@ class RecipesController < ApplicationController
       flash[:fail] = 'Não foi possivel editar' 
       redirect_to recipe_path(recipe.id) 
     end
+
+  end
+
+  def buscar
+    q = params[:q]
+    @busca  = Recipe.where(title: q)
+    if @busca.empty?
+      flash[:error] = 'Não foi encontrado nada'
+      redirect_to root_path
+    else
+      flash[:succes] = 'Foi encontrado'
+    end
+
+    
   end
 
   private

@@ -1,0 +1,13 @@
+<h1><%= flash[:succes] %></h1>
+
+<%= @busca.each do |b| %>
+<h1><%=b.title%><h1>
+<p><%= b.recipe_type.name %></p>
+<p><%= b.cuisine.name %></p>
+<p><%= b.difficulty %></p>
+<p><%= b.cook_time %> minutos</p>
+<h3>Ingredientes</h3>
+<p><%= b.ingredients %></p>
+<h3>Como Preparar</h3>
+<p><%= b.cook_method %></p>
+<% end %>

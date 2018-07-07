@@ -3,6 +3,14 @@
 
 <%= link_to "Enviar uma receita", new_recipe_path %>
 
+<h1><%= flash[:error] %></h1>
+<%= form_tag("/busca", method: "get")do%>
+  <%= label_tag(:q, 'Busca')%>
+  <%= text_field_tag(:q)%>
+  <%= submit_tag('Buscar')%>
+
+<%end%>
+
 <% @cuisines.each do |c|%>
   <%= link_to(c.name,c) %> 
 
